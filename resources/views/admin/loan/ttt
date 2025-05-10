@@ -1,0 +1,33 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Date</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Amount</th>
+            <th>Pay Method</th>
+            <th>Screenshot</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($loan->installments as $i => $installment)
+            <tr>
+                <td>{{ $i + 1 }}</td>
+                <td>{{ $installment->date->format('d/m/Y') }}</td>
+                <td>{{ $installment->title }}</td>
+                <td>{{ $installment->description }}</td>
+                <td>{{ $installment->amount }}</td>
+                <td>{{ $installment->payment_method }}</td>
+                <td>
+                    @if($installment->screenshot)
+                        <a href="{{ asset('storage/' . $installment->screenshot) }}" target="_blank">View</a>
+                    @endif
+                </td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
+
+
+User dashboard - data
